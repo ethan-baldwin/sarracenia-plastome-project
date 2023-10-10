@@ -68,6 +68,7 @@ setdiff(cp_tree$tip.label, sp_tree$tip.label)
 setdiff(sp_tree$tip.label, cp_tree$tip.label)
 
 write.tree(cp_tree, file = "cp_tree_renamed.tre")
+
 #################################### Check gene tree tips #######################################################
 # initialize empty vector
 GT_tip_labels <- c()
@@ -95,62 +96,7 @@ sort(GT_tip_labels_unique)
 setdiff(GT_tip_labels_unique, sp_tree$tip.label)
 setdiff(sp_tree$tip.label, GT_tip_labels_unique)
 
-
-
-################################################################################
-
-compare_trees <- function(tree1,tree2) {
-  diff1 <- setdiff(tree1$tip.label,tree2$tip.label)
-  diff2 <- setdiff(tree2$tip.label,tree1$tip.label)
-  tree1_comp <- drop.tip(tree1,diff1)
-  tree2_comp <- drop.tip(tree2,diff2)
-  RF.dist(tree1_comp,tree2_comp)
- # clad_freq <- prop.clades(tree1, tree2, rooted = TRUE)
-  # tree1_comp$node.label <- clad_freq
-#   ggtree(tree1_comp, branch.length = "none") + 
-#     geom_tiplab() +
-#     geom_nodelab(aes(label=label),
-#                  size=4,
-#                  hjust = 1.3,
-#                  vjust = -0.3) +
-#     scale_x_continuous(limits = c(0.0, 25))
-}
-
-
-tip_labelfor (tree in gene_trees_renamed) {
-  #remove all underscores
-  GT_tip_labels <- c(GT_tip_labels, tree$tip.label)
-}
-
-plot_support <- function(tree,multiphylo) {
-  diff1 <- setdiff(tree1$tip.label,tree2$tip.label)
-  diff2 <- setdiff(tree2$tip.label,tree1$tip.label)
-  tree1_comp <- drop.tip(tree1,diff1)
-  tree2_comp <- drop.tip(tree2,diff2)
-  RF.dist(tree1_comp,tree2_comp)
-  # clad_freq <- prop.clades(tree1, tree2, rooted = TRUE)
-  # tree1_comp$node.label <- clad_freq
-  #   ggtree(tree1_comp, branch.length = "none") + 
-  #     geom_tiplab() +
-  #     geom_nodelab(aes(label=label),
-  #                  size=4,
-  #                  hjust = 1.3,
-  #                  vjust = -0.3) +
-  #     scale_x_continuous(limits = c(0.0, 25))
-}
-
-compare_trees(tree1 = cp_tree, tree2 = sp_tree)
-# function(ref_tr) { 
-#   for (gene_tr in gene_trees) {
-#     setdiff
-#   }
-# }
-
-
-
-clad_sp <- prop.clades(sp_tree, gene_trees, rooted = TRUE)
-
-
+################################# Prune trees ###############################################
 
 # read in trees
 #cp_tree <- read.tree("cp_tree_pruned.tre")
